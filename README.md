@@ -1,7 +1,8 @@
 # Om Rojesara - Portfolio Website 🚀
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/OmRojesara/omrojesara.github.io/main/images/pic01.jpg" alt="Om Rojesara" width="200" style="border-radius: 50%;"/>
+  
+  <h2>🚀 Software Developer | MCA Student | AI/ML Enthusiast</h2>
   
   [![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen?style=for-the-badge&logo=github)](https://omrojesara.github.io)
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/omrojesara/)
