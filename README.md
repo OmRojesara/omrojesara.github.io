@@ -1,7 +1,7 @@
 # Om Rojesara - Portfolio Website 🚀
 
 <div align="center">
-  <img src="images/profile.jpg" alt="Om Rojesara" width="200" style="border-radius: 50%;"/>
+  <img src="https://raw.githubusercontent.com/OmRojesara/omrojesara.github.io/main/images/profile.jpg" alt="Om Rojesara" width="200" style="border-radius: 50%;"/>
   
   [![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen?style=for-the-badge&logo=github)](https://omrojesara.github.io)
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/omrojesara/)
