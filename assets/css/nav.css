@@ -1,0 +1,117 @@
+/* Premium Navigation Interactions */
+
+#header nav ul {
+    position: relative;
+    /* Ensure indicator stays contained */
+    z-index: 1;
+}
+
+/* Sliding active indicator (Glass pill) */
+.nav-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+    z-index: -1;
+}
+
+#header nav ul:hover .nav-indicator,
+#header nav ul:focus-within .nav-indicator {
+    opacity: 1;
+}
+
+/* Base styles for links */
+#header nav ul li a {
+    position: relative;
+    overflow: hidden; /* For ripple effect */
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s ease !important;
+    z-index: 2;
+    background-color: transparent !important; /* override default hover bg */
+}
+
+/* Micro scale animation */
+#header nav ul li a:hover {
+    transform: scale(1.05) translateY(-2px);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+#header nav ul li a:active {
+    transform: scale(0.95);
+}
+
+/* Keyboard focus animation */
+#header nav ul li a:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+}
+
+/* Animated underline inside links */
+#header nav ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: 0.4rem;
+    left: 20%;
+    width: 60%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#header nav ul li a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Ripple click animation */
+.nav-ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: navRipple 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+}
+
+@keyframes navRipple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Page transition indicator (Simple & Casual) */
+.page-transition-bar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.6);
+    width: 0%;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0;
+    transition: width 0.3s ease-out, opacity 0.3s ease;
+}
+
+.page-transition-bar.loading {
+    opacity: 1;
+    width: 30%;
+    transition: width 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.page-transition-bar.complete {
+    opacity: 1;
+    width: 100%;
+    transition: width 0.3s ease-out;
+}

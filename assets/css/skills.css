@@ -1,0 +1,175 @@
+/* Premium Skills Interactions */
+
+/* Category Header */
+.skill-category {
+    margin-bottom: 2rem;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.category-header h4 {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+}
+
+/* Animated Progress Dots */
+.progress-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.progress-dots .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.progress-dots .dot.active {
+    background: rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+/* Stagger dot animation on hover of category */
+.skill-category:hover .progress-dots .dot.active {
+    animation: pulseDot 0.6s alternate;
+}
+.skill-category:hover .progress-dots .dot.active:nth-child(1) { animation-delay: 0.1s; }
+.skill-category:hover .progress-dots .dot.active:nth-child(2) { animation-delay: 0.2s; }
+.skill-category:hover .progress-dots .dot.active:nth-child(3) { animation-delay: 0.3s; }
+.skill-category:hover .progress-dots .dot.active:nth-child(4) { animation-delay: 0.4s; }
+.skill-category:hover .progress-dots .dot.active:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes pulseDot {
+    0% { transform: scale(1); box-shadow: 0 0 8px rgba(0, 255, 255, 0.5); }
+    50% { transform: scale(1.5); box-shadow: 0 0 12px rgba(0, 255, 255, 0.8); background: #fff; }
+    100% { transform: scale(1); box-shadow: 0 0 8px rgba(0, 255, 255, 0.5); }
+}
+
+/* Animated Separator */
+.category-separator {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-separator::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,255,255,0.8), transparent);
+    transition: left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.skill-category:hover .category-separator::after {
+    left: 100%;
+    transition: left 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Icons Container */
+.category-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+/* Icon Interactions */
+.category-icons .skill-item {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.category-icons .skill-item img {
+    width: 60%;
+    height: auto;
+    border-radius: 4px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.category-icons .skill-item.needs-white-bg img {
+    background: white;
+    padding: 2px;
+    border-radius: 6px;
+}
+
+/* Hover: Lift, Tilt, Glow, Shadow */
+.category-icons .skill-item:hover {
+    transform: translateY(-8px) rotateX(10deg) rotateY(-10deg) scale(1.1);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 255, 255, 0.4);
+    box-shadow: 
+        -5px 15px 20px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(0, 255, 255, 0.2) inset;
+    z-index: 10;
+}
+
+.category-icons .skill-item:hover img {
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.5));
+}
+
+/* Smooth Tooltip for Technology Name */
+.category-icons .skill-item::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: rgba(15, 17, 21, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 20;
+    letter-spacing: 0.05rem;
+}
+
+.category-icons .skill-item:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Mobile specific sizing */
+@media screen and (max-width: 480px) {
+    .category-icons .skill-item {
+        width: 40px;
+        height: 40px;
+    }
+    .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}

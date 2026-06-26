@@ -1,0 +1,138 @@
+/* Premium Background Overrides */
+
+/* Override original #bg */
+#bg {
+    background: #0d0f12 !important; /* Deep dark base */
+    overflow: hidden;
+}
+
+#bg:before, #bg:after {
+    display: none !important; /* Hide old background image and overlay */
+}
+
+/* Container for all new elements */
+#premium-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+/* Maintain original blur behavior for articles but apply it to our container */
+body.is-article-visible #premium-bg-container {
+    filter: blur(8px);
+    transform: scale(1.05);
+}
+
+/* 1. Blobs */
+.bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    /* filter: blur(90px); REMOVED: major performance bottleneck */
+    opacity: 0.9;
+    will-change: transform;
+    animation: floatBlob 40s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Apple/Vercel inspired deep, rich but subtle colors */
+.bg-blob-1 {
+    width: 70vw;
+    height: 70vw;
+    background: radial-gradient(circle, rgba(40, 80, 255, 0.4) 0%, rgba(40, 80, 255, 0) 70%);
+    top: -15vw;
+    left: -10vw;
+    animation-duration: 45s;
+}
+
+.bg-blob-2 {
+    width: 65vw;
+    height: 65vw;
+    background: radial-gradient(circle, rgba(140, 50, 255, 0.3) 0%, rgba(140, 50, 255, 0) 70%);
+    bottom: -15vw;
+    right: -10vw;
+    animation-duration: 50s;
+    animation-delay: -10s;
+}
+
+.bg-blob-3 {
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, rgba(0, 255, 255, 0) 70%);
+    top: 30vh;
+    left: 20vw;
+    animation-duration: 60s;
+    animation-delay: -20s;
+}
+
+@keyframes floatBlob {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(3vw, 4vh, 0) scale(1.05); }
+    66% { transform: translate3d(-3vw, 2vh, 0) scale(0.95); }
+    100% { transform: translate3d(2vw, -3vh, 0) scale(1.02); }
+}
+
+/* 2. SVG Flowing Curves */
+.bg-svg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.bg-curves {
+    width: 100%;
+    height: 100%;
+}
+
+.curve {
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 1px;
+    vector-effect: non-scaling-stroke;
+    animation: curveBreathe 30s infinite alternate ease-in-out;
+    transform-origin: center;
+}
+
+.curve-1 { animation-duration: 40s; }
+.curve-2 { stroke-width: 0.8px; animation-duration: 55s; animation-delay: -10s; }
+.curve-3 { stroke: rgba(0, 255, 255, 0.2); animation-duration: 70s; animation-delay: -20s; }
+
+@keyframes curveBreathe {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.05) translateY(2%); }
+}
+
+/* 3. SVG Noise Filter */
+.bg-noise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    transform: translateZ(0); /* Force hardware acceleration */
+    will-change: transform;
+}
+
+/* 4. Vignette */
+.bg-vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    background: radial-gradient(circle at center, transparent 30%, rgba(10, 12, 16, 0.8) 120%);
+    pointer-events: none;
+}
